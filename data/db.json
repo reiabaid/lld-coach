@@ -1,0 +1,527 @@
+{
+  "problems": [
+    {
+      "id": "parking-lot",
+      "title": "Parking Lot",
+      "isHero": true,
+      "difficulty": "medium",
+      "description": "Design a parking lot system that tracks available spots across multiple vehicle types, calculates a parking fee on exit, and handles a full lot.",
+      "requirements": [
+        "Park a vehicle in an available spot and unpark it later",
+        "Support at least two vehicle/spot types (e.g. compact and large)",
+        "Calculate a fee based on how long the vehicle was parked",
+        "Reject parking when the lot is full, rather than crashing or silently failing"
+      ]
+    },
+    {
+      "id": "vending-machine",
+      "title": "Vending Machine",
+      "isHero": false,
+      "difficulty": "easy",
+      "description": "Design a vending machine that accepts payment, dispenses a selected item, and handles out-of-stock items and insufficient payment.",
+      "requirements": [
+        "Select an item and dispense it if in stock and paid for",
+        "Accept at least two payment methods",
+        "Handle an out-of-stock selection without crashing",
+        "Return change (or reject the transaction) on incorrect payment"
+      ]
+    },
+    {
+      "id": "elevator",
+      "title": "Elevator System",
+      "isHero": false,
+      "difficulty": "hard",
+      "description": "Design an elevator control system for a building with multiple elevators, handling floor call requests and dispatching the most appropriate elevator.",
+      "requirements": [
+        "Request an elevator from a floor (up or down)",
+        "Select a destination floor from inside a car",
+        "Dispatch a reasonable elevator among multiple available ones",
+        "Handle more than one simultaneous request without contradicting itself"
+      ]
+    }
+  ],
+  "rubrics": [
+    {
+      "id": "rubric-v1",
+      "version": 1,
+      "criteria": [
+        {
+          "id": "requirement-coverage",
+          "name": "Requirement Coverage",
+          "weight": 0.2,
+          "description": "Does the design actually address the stated requirements, including the less obvious ones (concurrency of access, capacity limits, pricing variation)?",
+          "scoringGuidance": {
+            "excellent": "Every stated requirement maps to a clear place in the design, including edge cases like a full lot or an unpaid exit.",
+            "good": "Core requirements are covered; one or two secondary requirements are thin or implicit.",
+            "weak": "Only the obvious happy-path requirement (park a car) is addressed.",
+            "poor": "The design doesn't clearly address the problem's stated requirements at all."
+          }
+        },
+        {
+          "id": "domain-modeling",
+          "name": "Domain Modeling",
+          "weight": 0.2,
+          "description": "Are the entities, value objects, and relationships the right shape for this problem — not too many, not too few?",
+          "scoringGuidance": {
+            "excellent": "Entities map cleanly to real concepts in the problem; relationships and cardinality are explicit and correct.",
+            "good": "Reasonable entities with a couple of debatable choices (e.g. a missing value object, an over-broad class).",
+            "weak": "Entities exist but blur multiple concepts together, or invent structure the problem doesn't need.",
+            "poor": "No real modeling — a bag of fields and functions with no entity boundaries."
+          }
+        },
+        {
+          "id": "encapsulation",
+          "name": "Encapsulation & Responsibilities",
+          "weight": 0.15,
+          "description": "Does each class own a clear, singular responsibility, with internal state protected behind behavior rather than exposed as public fields?",
+          "scoringGuidance": {
+            "excellent": "Each class has one clear reason to change; internal state is private and mutated only through methods that preserve invariants.",
+            "good": "Mostly clean, with one class doing slightly more than it should.",
+            "weak": "Multiple unrelated responsibilities are concentrated in one or two classes.",
+            "poor": "State is public and mutated from anywhere; no real encapsulation."
+          }
+        },
+        {
+          "id": "extensibility",
+          "name": "Extensibility",
+          "weight": 0.2,
+          "description": "If a likely requirement changes (new pricing rule, new vehicle type, new payment method), how much existing code has to change?",
+          "scoringGuidance": {
+            "excellent": "Likely requirement changes need minimal modification to existing classes — new behavior slots in behind an existing seam.",
+            "good": "Some extension points exist, but certain changes would still touch existing responsibilities.",
+            "weak": "Significant conditional logic (long if/switch chains) or tight coupling would need untangling.",
+            "poor": "The design is highly coupled and difficult to extend without a rewrite."
+          }
+        },
+        {
+          "id": "solid",
+          "name": "SOLID / Design Quality",
+          "weight": 0.15,
+          "description": "Where SOLID principles or a design pattern would genuinely help, are they applied — and not applied where they wouldn't?",
+          "scoringGuidance": {
+            "excellent": "SOLID principles are visibly respected where it matters; any pattern used earns its place rather than being decorative.",
+            "good": "Generally sound, with one principle bent for a reason that's at least defensible.",
+            "weak": "Clear violations (e.g. a class that both decides and executes, or subclassing used for what should be composition).",
+            "poor": "No apparent awareness of responsibility separation."
+          }
+        },
+        {
+          "id": "tradeoffs",
+          "name": "Trade-offs & Explanation",
+          "weight": 0.1,
+          "description": "Does the submission explain *why* it made its key decisions, including what it chose not to do and why?",
+          "scoringGuidance": {
+            "excellent": "Key decisions are explained with real trade-offs named (what was gained, what was given up, what would change under different constraints).",
+            "good": "Some rationale given, but mostly assertion rather than trade-off reasoning.",
+            "weak": "Little to no explanation of why the design looks the way it does.",
+            "poor": "No explanation at all."
+          }
+        }
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "id": "c88c66c4-6ec1-4b99-962a-2d315b247862",
+      "problemId": "parking-lot",
+      "status": "completed",
+      "createdAt": "2026-09-09T10:20:12.155Z"
+    },
+    {
+      "id": "d480f516-9bcc-4c12-9eae-ed0dc49c67c4",
+      "problemId": "vending-machine",
+      "status": "created",
+      "createdAt": "2026-09-10T07:43:42.743Z"
+    },
+    {
+      "id": "437c3aad-22b3-4502-9398-4e73ef61dcd0",
+      "problemId": "vending-machine",
+      "status": "completed",
+      "createdAt": "2026-09-10T07:44:12.070Z"
+    },
+    {
+      "id": "61c7d61b-6861-484b-9ebe-794378bd3260",
+      "problemId": "vending-machine",
+      "status": "created",
+      "createdAt": "2026-09-10T07:53:14.320Z"
+    },
+    {
+      "id": "8ed6cc1e-779e-4565-b4be-5117d741b717",
+      "problemId": "vending-machine",
+      "status": "created",
+      "createdAt": "2026-09-10T08:06:49.448Z"
+    }
+  ],
+  "submissions": [
+    {
+      "id": "050a6528-f5a7-4b8d-ba69-a134d6ae1ae1",
+      "attemptId": "c88c66c4-6ec1-4b99-962a-2d315b247862",
+      "version": 1,
+      "content": {
+        "type": "code",
+        "content": "class ParkingLot {\n  private occupied: Map<string, number> = new Map();\n\n  constructor(private totalSpots: number) {}\n\n  parkVehicle(licensePlate: string): void {\n    this.occupied.set(licensePlate, Date.now());\n  }\n\n  unparkVehicle(licensePlate: string): number {\n    const entryTime = this.occupied.get(licensePlate)!;\n    const fee = this.calculateFee(entryTime);\n    this.processPayment(licensePlate, fee);\n    this.generateReceipt(licensePlate, fee);\n    this.occupied.delete(licensePlate);\n    return fee;\n  }\n\n  calculateFee(entryTime: number): number {\n    const hours = (Date.now() - entryTime) / (1000 * 60 * 60);\n    return Math.ceil(hours) * 5; // flat $5/hour, every vehicle type\n  }\n\n  processPayment(licensePlate: string, amount: number): void {\n    console.log(`Charged ${licensePlate} $${amount}`);\n  }\n\n  generateReceipt(licensePlate: string, amount: number): void {\n    console.log(`Receipt: ${licensePlate} paid $${amount}`);\n  }\n}"
+      },
+      "submittedAt": "2026-09-09T10:35:12.155Z"
+    },
+    {
+      "id": "ad7d97ea-3f42-4c5e-aab9-114782c277f2",
+      "attemptId": "c88c66c4-6ec1-4b99-962a-2d315b247862",
+      "version": 2,
+      "content": {
+        "type": "code",
+        "content": "interface PricingStrategy {\n  calculateFee(entryTime: number, exitTime: number): number;\n}\n\nclass HourlyPricing implements PricingStrategy {\n  constructor(private ratePerHour: number) {}\n  calculateFee(entryTime: number, exitTime: number): number {\n    const hours = (exitTime - entryTime) / (1000 * 60 * 60);\n    return Math.ceil(hours) * this.ratePerHour;\n  }\n}\n\nclass SpotManager {\n  private spots = new Map<string, boolean>();\n  constructor(spotIds: string[]) {\n    spotIds.forEach((id) => this.spots.set(id, true));\n  }\n  findAvailableSpot(): string | null {\n    for (const [id, available] of this.spots) if (available) return id;\n    return null; // lot is full — handled explicitly, not a crash\n  }\n  occupy(spotId: string) { this.spots.set(spotId, false); }\n  release(spotId: string) { this.spots.set(spotId, true); }\n}\n\nclass PaymentProcessor {\n  charge(licensePlate: string, amount: number): void {\n    console.log(`Charged ${licensePlate} $${amount}`);\n  }\n}\n\nclass ReceiptService {\n  issue(licensePlate: string, amount: number): void {\n    console.log(`Receipt: ${licensePlate} paid $${amount}`);\n  }\n}\n\nclass ParkingLot {\n  private occupiedBy = new Map<string, { spotId: string; entryTime: number }>();\n\n  constructor(\n    private spotManager: SpotManager,\n    private pricingStrategy: PricingStrategy,\n    private paymentProcessor: PaymentProcessor,\n    private receiptService: ReceiptService\n  ) {}\n\n  parkVehicle(licensePlate: string): string | null {\n    const spotId = this.spotManager.findAvailableSpot();\n    if (!spotId) return null; // lot full\n    this.spotManager.occupy(spotId);\n    this.occupiedBy.set(licensePlate, { spotId, entryTime: Date.now() });\n    return spotId;\n  }\n\n  unparkVehicle(licensePlate: string): number {\n    const record = this.occupiedBy.get(licensePlate);\n    if (!record) throw new Error(\"Vehicle not found in lot\");\n    const fee = this.pricingStrategy.calculateFee(record.entryTime, Date.now());\n    this.paymentProcessor.charge(licensePlate, fee);\n    this.receiptService.issue(licensePlate, fee);\n    this.spotManager.release(record.spotId);\n    this.occupiedBy.delete(licensePlate);\n    return fee;\n  }\n}\n\n// Trade-off: PricingStrategy was introduced specifically so a new pricing\n// rule (peak hours, membership discounts) is a new class, not an edit to\n// ParkingLot. Multi-currency support was deliberately left out of scope."
+      },
+      "submittedAt": "2026-09-09T11:10:12.155Z"
+    },
+    {
+      "id": "650c5d84-29e1-42da-8b95-5cee4c87cbd7",
+      "attemptId": "437c3aad-22b3-4502-9398-4e73ef61dcd0",
+      "version": 1,
+      "content": {
+        "type": "code",
+        "content": "// VENDING MACHINE - LOW LEVEL DESIGN\n//\n// Design patterns:\n// 1. State Pattern -> manages machine states and prevents invalid operations.\n// 2. Strategy Pattern -> supports multiple payment methods.\n// 3. Composition -> VendingMachine owns Inventory.\n\n// --------------------\n// DOMAIN MODELS\n// --------------------\n\nclass Item {\n  constructor(\n    public readonly id: string,\n    public readonly name: string,\n    public readonly price: number\n  ) {}\n}\n\nclass ItemSlot {\n  constructor(\n    public readonly item: Item,\n    private quantity: number\n  ) {}\n\n  isAvailable(): boolean {\n    return this.quantity > 0;\n  }\n\n  dispense(): void {\n    if (!this.isAvailable()) {\n      throw new Error(\"Item is out of stock\");\n    }\n\n    this.quantity--;\n  }\n\n  getQuantity(): number {\n    return this.quantity;\n  }\n}\n\n\n// --------------------\n// INVENTORY\n// --------------------\n\nclass Inventory {\n  private slots = new Map<string, ItemSlot>();\n\n  addItem(item: Item, quantity: number): void {\n    this.slots.set(item.id, new ItemSlot(item, quantity));\n  }\n\n  getItem(itemId: string): Item | null {\n    const slot = this.slots.get(itemId);\n\n    if (!slot || !slot.isAvailable()) {\n      return null;\n    }\n\n    return slot.item;\n  }\n\n  isAvailable(itemId: string): boolean {\n    return this.slots.get(itemId)?.isAvailable() ?? false;\n  }\n\n  dispense(itemId: string): void {\n    const slot = this.slots.get(itemId);\n\n    if (!slot || !slot.isAvailable()) {\n      throw new Error(\"Item is out of stock\");\n    }\n\n    slot.dispense();\n  }\n}\n\n\n// --------------------\n// PAYMENT STRATEGY\n// --------------------\n\ninterface PaymentMethod {\n  pay(amount: number): PaymentResult;\n}\n\ninterface PaymentResult {\n  success: boolean;\n  amountPaid: number;\n  change: number;\n  message?: string;\n}\n\n\n// Cash supports overpayment and change.\nclass CashPayment implements PaymentMethod {\n  constructor(private readonly cashAmount: number) {}\n\n  pay(amount: number): PaymentResult {\n    if (this.cashAmount < amount) {\n      return {\n        success: false,\n        amountPaid: this.cashAmount,\n        change: 0,\n        message: \"Insufficient cash\"\n      };\n    }\n\n    return {\n      success: true,\n      amountPaid: this.cashAmount,\n      change: this.cashAmount - amount\n    };\n  }\n}\n\n\n// Card payment normally charges the exact amount.\nclass CardPayment implements PaymentMethod {\n  pay(amount: number): PaymentResult {\n    // In production this would call a payment gateway.\n    const paymentSuccessful = true;\n\n    if (!paymentSuccessful) {\n      return {\n        success: false,\n        amountPaid: 0,\n        change: 0,\n        message: \"Card payment failed\"\n      };\n    }\n\n    return {\n      success: true,\n      amountPaid: amount,\n      change: 0\n    };\n  }\n}\n\n\n// Easy to add later without modifying VendingMachine.\nclass UPIPayment implements PaymentMethod {\n  pay(amount: number): PaymentResult {\n    const paymentSuccessful = true;\n\n    return {\n      success: paymentSuccessful,\n      amountPaid: paymentSuccessful ? amount : 0,\n      change: 0,\n      message: paymentSuccessful ? undefined : \"UPI payment failed\"\n    };\n  }\n}\n\n\n// --------------------\n// STATE PATTERN\n// --------------------\n\ninterface VendingMachineState {\n  selectItem(machine: VendingMachine, itemId: string): void;\n  makePayment(machine: VendingMachine, payment: PaymentMethod): void;\n  cancel(machine: VendingMachine): void;\n}\n\n\n// Initial state.\nclass IdleState implements VendingMachineState {\n  selectItem(machine: VendingMachine, itemId: string): void {\n    const item = machine.inventory.getItem(itemId);\n\n    if (!item) {\n      console.log(\"Item is out of stock.\");\n      return;\n    }\n\n    machine.selectedItem = item;\n    machine.setState(new ItemSelectedState());\n\n    console.log(`Selected ${item.name}. Price: ${item.price}`);\n  }\n\n  makePayment(): void {\n    console.log(\"Please select an item first.\");\n  }\n\n  cancel(): void {\n    console.log(\"Nothing to cancel.\");\n  }\n}\n\n\n// Item selected, waiting for payment.\nclass ItemSelectedState implements VendingMachineState {\n  selectItem(): void {\n    console.log(\"An item is already selected.\");\n  }\n\n  makePayment(machine: VendingMachine, payment: PaymentMethod): void {\n    machine.setState(new PaymentPendingState());\n\n    machine.processPayment(payment);\n  }\n\n  cancel(machine: VendingMachine): void {\n    machine.reset();\n    console.log(\"Transaction cancelled.\");\n  }\n}\n\n\n// Payment is being processed.\nclass PaymentPendingState implements VendingMachineState {\n  selectItem(): void {\n    console.log(\"Payment is currently being processed.\");\n  }\n\n  makePayment(): void {\n    console.log(\"Payment is already being processed.\");\n  }\n\n  cancel(machine: VendingMachine): void {\n    machine.reset();\n    console.log(\"Transaction cancelled/refunded.\");\n  }\n}\n\n\n// --------------------\n// VENDING MACHINE\n// --------------------\n\nclass VendingMachine {\n  public readonly inventory: Inventory;\n\n  private state: VendingMachineState;\n  public selectedItem: Item | null = null;\n\n  constructor(inventory: Inventory) {\n    this.inventory = inventory;\n    this.state = new IdleState();\n  }\n\n  setState(state: VendingMachineState): void {\n    this.state = state;\n  }\n\n  selectItem(itemId: string): void {\n    this.state.selectItem(this, itemId);\n  }\n\n  makePayment(payment: PaymentMethod): void {\n    this.state.makePayment(this, payment);\n  }\n\n  cancel(): void {\n    this.state.cancel(this);\n  }\n\n  processPayment(payment: PaymentMethod): void {\n    if (!this.selectedItem) {\n      this.reset();\n      return;\n    }\n\n    const result = payment.pay(this.selectedItem.price);\n\n    if (!result.success) {\n      console.log(result.message ?? \"Payment failed\");\n      this.reset();\n      return;\n    }\n\n    // Important: dispense only after successful payment.\n    try {\n      this.inventory.dispense(this.selectedItem.id);\n\n      console.log(`Dispensing ${this.selectedItem.name}`);\n\n      if (result.change > 0) {\n        console.log(`Returning change: ${result.change}`);\n      }\n\n      this.reset();\n\n    } catch (error) {\n      // In production, payment should be refunded if\n      // dispensing fails.\n      console.log(\"Dispensing failed. Refund required.\");\n      this.reset();\n    }\n  }\n\n  reset(): void {\n    this.selectedItem = null;\n    this.state = new IdleState();\n  }\n}\n\n\n// --------------------\n// EXAMPLE USAGE\n// --------------------\n\nconst inventory = new Inventory();\n\ninventory.addItem(\n  new Item(\"A1\", \"Coke\", 40),\n  5\n);\n\ninventory.addItem(\n  new Item(\"B1\", \"Chips\", 30),\n  2\n);\n\nconst machine = new VendingMachine(inventory);\n\n// Successful cash payment\nmachine.selectItem(\"A1\");\nmachine.makePayment(new CashPayment(50));\n// -> Dispenses Coke\n// -> Returns 10 change\n\n\n// Successful card payment\nmachine.selectItem(\"B1\");\nmachine.makePayment(new CardPayment());\n\n\n// Out of stock\nmachine.selectItem(\"C1\");\n// -> \"Item is out of stock\"\n\n\n// Insufficient payment\nmachine.selectItem(\"A1\");\nmachine.makePayment(new CashPayment(20));\n// -> Payment rejected/refunded\n\n\n// --------------------\n// DESIGN TRADE-OFFS\n// --------------------\n\n/*\n1. STATE PATTERN\n\nThe vending machine behaves differently depending on its state.\nFor example:\n- Cannot pay before selecting an item.\n- Cannot select another item while payment is processing.\n- Cannot dispense before successful payment.\n\nUsing states avoids a large collection of if/else conditions\ninside VendingMachine.\n\n2. STRATEGY PATTERN\n\nPaymentMethod abstracts payment processing.\n\nCashPayment, CardPayment and UPIPayment can have different\nimplementations without changing VendingMachine.\n\nAdding a new payment method only requires a new strategy.\n\n3. SINGLE RESPONSIBILITY\n\nInventory manages stock.\nPaymentMethod manages payment.\nVendingMachine coordinates the transaction.\nStates control valid operations.\n\n4. FAILURE HANDLING\n\nAn out-of-stock item never enters the payment flow.\n\nInsufficient/failed payment resets the transaction.\n\nIf payment succeeds but dispensing fails, the system should\nrefund the payment. In a production system, payment and\ndispensing would use a transaction/reservation mechanism to\nguarantee consistency.\n\n5. EXTENSIBILITY\n\nThe design can later support:\n- UPI\n- Wallets\n- NFC\n- Multiple item categories\n- Change management\n- Admin restocking\n- Transaction history\n- Payment gateway integration\n\nwithout significantly modifying the core VendingMachine class.\n*/"
+      },
+      "submittedAt": "2026-09-10T07:45:37.709Z"
+    },
+    {
+      "id": "d5609ae6-f15e-47cf-865f-4f6e3a02842e",
+      "attemptId": "c88c66c4-6ec1-4b99-962a-2d315b247862",
+      "version": 3,
+      "content": {
+        "type": "code",
+        "content": "interface PricingStrategy {\n  calculateFee(entryTime: number, exitTime: number): number;\n}\n\nclass HourlyPricing implements PricingStrategy {\n  constructor(private ratePerHour: number) {}\n  calculateFee(entryTime: number, exitTime: number): number {\n    const hours = (exitTime - entryTime) / (1000 * 60 * 60);\n    return Math.ceil(hours) * this.ratePerHour;\n  }\n}\n\nclass SpotManager {\n  private spots = new Map<string, boolean>();\n  constructor(spotIds: string[]) {\n    spotIds.forEach((id) => this.spots.set(id, true));\n  }\n  findAvailableSpot(): string | null {\n    for (const [id, available] of this.spots) if (available) return id;\n    return null; // lot is full — handled explicitly, not a crash\n  }\n  occupy(spotId: string) { this.spots.set(spotId, false); }\n  release(spotId: string) { this.spots.set(spotId, true); }\n}\n\nclass PaymentProcessor {\n  charge(licensePlate: string, amount: number): void {\n    console.log(`Charged ${licensePlate} $${amount}`);\n  }\n}\n\nclass ReceiptService {\n  issue(licensePlate: string, amount: number): void {\n    console.log(`Receipt: ${licensePlate} paid $${amount}`);\n  }\n}\n\nclass ParkingLot {\n  private occupiedBy = new Map<string, { spotId: string; entryTime: number }>();\n\n  constructor(\n    private spotManager: SpotManager,\n    private pricingStrategy: PricingStrategy,\n    private paymentProcessor: PaymentProcessor,\n    private receiptService: ReceiptService\n  ) {}\n\n  parkVehicle(licensePlate: string): string | null {\n    const spotId = this.spotManager.findAvailableSpot();\n    if (!spotId) return null; // lot full\n    this.spotManager.occupy(spotId);\n    this.occupiedBy.set(licensePlate, { spotId, entryTime: Date.now() });\n    return spotId;\n  }\n\n  unparkVehicle(licensePlate: string): number {\n    const record = this.occupiedBy.get(licensePlate);\n    if (!record) throw new Error(\"Vehicle not found in lot\");\n    const fee = this.pricingStrategy.calculateFee(record.entryTime, Date.now());\n    this.paymentProcessor.charge(licensePlate, fee);\n    this.receiptService.issue(licensePlate, fee);\n    this.spotManager.release(record.spotId);\n    this.occupiedBy.delete(licensePlate);\n    return fee;\n  }\n}\n\n// Trade-off: PricingStrategy was introduced specifically so a new pricing\n// rule (peak hours, membership discounts) is a new class, not an edit to\n// ParkingLot. Multi-currency support was deliberately left out of scope."
+      },
+      "submittedAt": "2026-09-10T07:49:08.600Z"
+    },
+    {
+      "id": "ea64c8f3-dcbd-4497-9cbc-3e703b2e50ab",
+      "attemptId": "c88c66c4-6ec1-4b99-962a-2d315b247862",
+      "version": 4,
+      "content": {
+        "type": "code",
+        "content": "interface PricingStrategy {\n  calculateFee(entryTime: number, exitTime: number): number;\n}\n\nclass HourlyPricing implements PricingStrategy {\n  constructor(private ratePerHour: number) {}\n  calculateFee(entryTime: number, exitTime: number): number {\n    const hours = (exitTime - entryTime) / (1000 * 60 * 60);\n    return Math.ceil(hours) * this.ratePerHour;\n  }\n}\n\nclass SpotManager {\n  private spots = new Map<string, boolean>();\n  constructor(spotIds: string[]) {\n    spotIds.forEach((id) => this.spots.set(id, true));\n  }\n  findAvailableSpot(): string | null {\n    for (const [id, available] of this.spots) if (available) return id;\n    return null; // lot is full — handled explicitly, not a crash\n  }\n  occupy(spotId: string) { this.spots.set(spotId, false); }\n  release(spotId: string) { this.spots.set(spotId, true); }\n}\n\nclass PaymentProcessor {\n  charge(licensePlate: string, amount: number): void {\n    console.log(`Charged ${licensePlate} $${amount}`);\n  }\n}\n\nclass ReceiptService {\n  issue(licensePlate: string, amount: number): void {\n    console.log(`Receipt: ${licensePlate} paid $${amount}`);\n  }\n}\n\nclass ParkingLot {\n  private occupiedBy = new Map<string, { spotId: string; entryTime: number }>();\n\n  constructor(\n    private spotManager: SpotManager,\n    private pricingStrategy: PricingStrategy,\n    private paymentProcessor: PaymentProcessor,\n    private receiptService: ReceiptService\n  ) {}\n\n  parkVehicle(licensePlate: string): string | null {\n    const spotId = this.spotManager.findAvailableSpot();\n    if (!spotId) return null; // lot full\n    this.spotManager.occupy(spotId);\n    this.occupiedBy.set(licensePlate, { spotId, entryTime: Date.now() });\n    return spotId;\n  }\n\n  unparkVehicle(licensePlate: string): number {\n    const record = this.occupiedBy.get(licensePlate);\n    if (!record) throw new Error(\"Vehicle not found in lot\");\n    const fee = this.pricingStrategy.calculateFee(record.entryTime, Date.now());\n    this.paymentProcessor.charge(licensePlate, fee);\n    this.receiptService.issue(licensePlate, fee);\n    this.spotManager.release(record.spotId);\n    this.occupiedBy.delete(licensePlate);\n    return fee;\n  }\n}\n\n// Trade-off: PricingStrategy was introduced specifically so a new pricing\n// rule (peak hours, membership discounts) is a new class, not an edit to\n// ParkingLot. Multi-currency support was deliberately left out of scope."
+      },
+      "submittedAt": "2026-09-10T07:50:52.747Z"
+    },
+    {
+      "id": "d959ab82-c0c3-4709-b062-3062dcbac37f",
+      "attemptId": "c88c66c4-6ec1-4b99-962a-2d315b247862",
+      "version": 5,
+      "content": {
+        "type": "code",
+        "content": "interface PricingStrategy {\n  calculateFee(entryTime: number, exitTime: number): number;\n}\n\nclass HourlyPricing implements PricingStrategy {\n  constructor(private ratePerHour: number) {}\n  calculateFee(entryTime: number, exitTime: number): number {\n    const hours = (exitTime - entryTime) / (1000 * 60 * 60);\n    return Math.ceil(hours) * this.ratePerHour;\n  }\n}\n\nclass SpotManager {\n  private spots = new Map<string, boolean>();\n  constructor(spotIds: string[]) {\n    spotIds.forEach((id) => this.spots.set(id, true));\n  }\n  findAvailableSpot(): string | null {\n    for (const [id, available] of this.spots) if (available) return id;\n    return null; // lot is full — handled explicitly, not a crash\n  }\n  occupy(spotId: string) { this.spots.set(spotId, false); }\n  release(spotId: string) { this.spots.set(spotId, true); }\n}\n\nclass PaymentProcessor {\n  charge(licensePlate: string, amount: number): void {\n    console.log(`Charged ${licensePlate} $${amount}`);\n  }\n}\n\nclass ReceiptService {\n  issue(licensePlate: string, amount: number): void {\n    console.log(`Receipt: ${licensePlate} paid $${amount}`);\n  }\n}\n\nclass ParkingLot {\n  private occupiedBy = new Map<string, { spotId: string; entryTime: number }>();\n\n  constructor(\n    private spotManager: SpotManager,\n    private pricingStrategy: PricingStrategy,\n    private paymentProcessor: PaymentProcessor,\n    private receiptService: ReceiptService\n  ) {}\n\n  parkVehicle(licensePlate: string): string | null {\n    const spotId = this.spotManager.findAvailableSpot();\n    if (!spotId) return null; // lot full\n    this.spotManager.occupy(spotId);\n    this.occupiedBy.set(licensePlate, { spotId, entryTime: Date.now() });\n    return spotId;\n  }\n\n  unparkVehicle(licensePlate: string): number {\n    const record = this.occupiedBy.get(licensePlate);\n    if (!record) throw new Error(\"Vehicle not found in lot\");\n    const fee = this.pricingStrategy.calculateFee(record.entryTime, Date.now());\n    this.paymentProcessor.charge(licensePlate, fee);\n    this.receiptService.issue(licensePlate, fee);\n    this.spotManager.release(record.spotId);\n    this.occupiedBy.delete(licensePlate);\n    return fee;\n  }\n}\n\n// Trade-off: PricingStrategy was introduced specifically so a new pricing\n// rule (peak hours, membership discounts) is a new class, not an edit to\n// ParkingLot. Multi-currency support was deliberately left out of scope."
+      },
+      "submittedAt": "2026-09-10T07:50:58.518Z"
+    }
+  ],
+  "evaluations": [
+    {
+      "id": "92458d32-e1e6-473e-bd12-2ce019f89556",
+      "submissionId": "050a6528-f5a7-4b8d-ba69-a134d6ae1ae1",
+      "rubricId": "rubric-v1",
+      "attempts": 0,
+      "status": "completed",
+      "overallScore": 5.8,
+      "criteria": [
+        {
+          "criterionId": "requirement-coverage",
+          "criterionName": "Requirement Coverage",
+          "score": 7,
+          "evidence": "parkVehicle() and unparkVehicle() handle the core flow and calculateFee() computes a fee, but there's no handling for a full lot or multiple vehicle types.",
+          "feedback": "Core parking/unparking and fee calculation are present; the full-lot and multi-vehicle-type requirements aren't addressed.",
+          "suggestion": "Add an explicit check and response for when no spots are available."
+        },
+        {
+          "criterionId": "domain-modeling",
+          "criterionName": "Domain Modeling",
+          "score": 7,
+          "evidence": "ParkingLot is the only class; the ideas of a spot, a vehicle, and a payment are implied by method names but never given their own type.",
+          "feedback": "The single class captures the workflow but doesn't model the underlying concepts separately.",
+          "suggestion": "Introduce Spot and Vehicle as explicit types."
+        },
+        {
+          "criterionId": "encapsulation",
+          "criterionName": "Encapsulation & Responsibilities",
+          "score": 5,
+          "evidence": "processPayment() and generateReceipt() are both methods directly on ParkingLot, alongside the parking logic itself.",
+          "feedback": "Payment and receipt behavior are handled inline rather than owned by a collaborator whose job they actually are.",
+          "suggestion": "Extract payment and receipt generation into their own classes."
+        },
+        {
+          "criterionId": "extensibility",
+          "criterionName": "Extensibility",
+          "score": 4,
+          "evidence": "calculateFee() is a method on ParkingLot itself with a hardcoded flat rate, so a new pricing rule means editing ParkingLot directly.",
+          "feedback": "Pricing changes require modifying ParkingLot — there's no seam for a new pricing rule.",
+          "suggestion": "Extract pricing behind a PricingStrategy interface so a new rule is a new class, not an edit to ParkingLot."
+        },
+        {
+          "criterionId": "solid",
+          "criterionName": "SOLID / Design Quality",
+          "score": 6,
+          "evidence": "ParkingLot has five responsibilities: parking, unparking, fee calculation, payment processing, and receipt generation.",
+          "feedback": "This concentrates responsibilities that could each change for independent reasons — a Single Responsibility concern.",
+          "suggestion": "Split payment processing and receipt generation into their own collaborators."
+        },
+        {
+          "criterionId": "tradeoffs",
+          "criterionName": "Trade-offs & Explanation",
+          "score": 5,
+          "evidence": "The submission has no accompanying explanation of why it's structured this way.",
+          "feedback": "No trade-offs or rationale are given for the design's current shape.",
+          "suggestion": "Add a short note on what was prioritized and what was deliberately left out."
+        }
+      ],
+      "strengths": [],
+      "weaknesses": [
+        "Encapsulation & Responsibilities: Payment and receipt behavior are handled inline rather than owned by a collaborator whose job they actually are.",
+        "Extensibility: Pricing changes require modifying ParkingLot — there's no seam for a new pricing rule.",
+        "Trade-offs & Explanation: No trade-offs or rationale are given for the design's current shape."
+      ],
+      "suggestions": [
+        "Extract payment and receipt generation into their own classes.",
+        "Extract pricing behind a PricingStrategy interface so a new rule is a new class, not an edit to ParkingLot.",
+        "Add a short note on what was prioritized and what was deliberately left out."
+      ],
+      "createdAt": "2026-09-09T11:20:12.155Z",
+      "updatedAt": "2026-09-09T11:20:12.155Z",
+      "failureReason": null
+    },
+    {
+      "id": "d0dcdbb8-4f9a-4e3d-8d6d-6c6d2c47377c",
+      "submissionId": "ad7d97ea-3f42-4c5e-aab9-114782c277f2",
+      "rubricId": "rubric-v1",
+      "attempts": 0,
+      "status": "completed",
+      "overallScore": 8.1,
+      "criteria": [
+        {
+          "criterionId": "requirement-coverage",
+          "criterionName": "Requirement Coverage",
+          "score": 9,
+          "evidence": "SpotManager.findAvailableSpot() explicitly returns null when the lot is full, which parkVehicle() checks before proceeding.",
+          "feedback": "Core flow plus the full-lot edge case are now handled explicitly rather than assumed away.",
+          "suggestion": "Consider also handling a vehicle attempting to unpark twice."
+        },
+        {
+          "criterionId": "domain-modeling",
+          "criterionName": "Domain Modeling",
+          "score": 8,
+          "evidence": "SpotManager, PricingStrategy, PaymentProcessor, and ReceiptService are now separate types alongside ParkingLot.",
+          "feedback": "The concepts underlying the workflow now have their own representation instead of being implicit in method names.",
+          "suggestion": "A Vehicle type (rather than a raw license plate string) would complete the picture."
+        },
+        {
+          "criterionId": "encapsulation",
+          "criterionName": "Encapsulation & Responsibilities",
+          "score": 8,
+          "evidence": "ParkingLot now delegates to spotManager, pricingStrategy, and paymentProcessor rather than doing the work itself.",
+          "feedback": "Responsibilities are owned by the collaborator whose job they actually are.",
+          "suggestion": "No changes needed for this MVP scope."
+        },
+        {
+          "criterionId": "extensibility",
+          "criterionName": "Extensibility",
+          "score": 8,
+          "evidence": "PricingStrategy is an interface with HourlyPricing as one implementation, injected into ParkingLot's constructor.",
+          "feedback": "A new pricing rule is now a new class implementing PricingStrategy, not an edit to ParkingLot.",
+          "suggestion": "The same seam could be extended to PaymentProcessor for multiple payment methods."
+        },
+        {
+          "criterionId": "solid",
+          "criterionName": "SOLID / Design Quality",
+          "score": 8,
+          "evidence": "Payment processing and receipt generation were extracted into PaymentProcessor and ReceiptService, leaving ParkingLot to coordinate spot allocation.",
+          "feedback": "ParkingLot's remaining responsibility is much closer to a single reason to change.",
+          "suggestion": "No changes needed for this MVP scope."
+        },
+        {
+          "criterionId": "tradeoffs",
+          "criterionName": "Trade-offs & Explanation",
+          "score": 7,
+          "evidence": "A comment on the submission states PricingStrategy was introduced specifically so pricing changes don't touch ParkingLot, and that multi-currency was left out of scope.",
+          "feedback": "One clear trade-off is named, with an explicit statement of what was deliberately deferred.",
+          "suggestion": "Naming a second trade-off (e.g. why SpotManager doesn't reserve spot types) would strengthen this further."
+        }
+      ],
+      "strengths": [
+        "Requirement Coverage: Core flow plus the full-lot edge case are now handled explicitly rather than assumed away.",
+        "Domain Modeling: The concepts underlying the workflow now have their own representation instead of being implicit in method names.",
+        "Encapsulation & Responsibilities: Responsibilities are owned by the collaborator whose job they actually are.",
+        "Extensibility: A new pricing rule is now a new class implementing PricingStrategy, not an edit to ParkingLot.",
+        "SOLID / Design Quality: ParkingLot's remaining responsibility is much closer to a single reason to change."
+      ],
+      "weaknesses": [],
+      "suggestions": [],
+      "createdAt": "2026-09-09T11:20:12.155Z",
+      "updatedAt": "2026-09-09T11:20:12.155Z",
+      "failureReason": null
+    },
+    {
+      "id": "7a517516-917b-43ab-b238-c6b845e6b9bd",
+      "submissionId": "650c5d84-29e1-42da-8b95-5cee4c87cbd7",
+      "rubricId": "rubric-v1",
+      "attempts": 1,
+      "status": "completed",
+      "overallScore": 7.8,
+      "criteria": [
+        {
+          "criterionId": "requirement-coverage",
+          "criterionName": "Requirement Coverage",
+          "score": 7,
+          "evidence": "The design includes selectItem, makePayment with CashPayment, CardPayment and UPIPayment, out‑of‑stock handling (\"Item is out of stock\"), and change return for cash payments.",
+          "feedback": "Core functional requirements are implemented and demonstrated in the example usage. Edge cases such as concurrency, inventory capacity limits, and dynamic pricing are not addressed.",
+          "suggestion": "Add thread‑safe handling for concurrent selections and a way to configure stock limits or price rules to cover the less obvious requirements."
+        },
+        {
+          "criterionId": "domain-modeling",
+          "criterionName": "Domain Modeling",
+          "score": 8,
+          "evidence": "Entities like Item, ItemSlot, Inventory, PaymentMethod (interface) and VendingMachineState are defined, each reflecting a real concept of the problem.",
+          "feedback": "The model captures the main concepts without unnecessary complexity. A dedicated Money/value‑object could improve type safety for prices and amounts.",
+          "suggestion": "Introduce a Money value object to encapsulate currency arithmetic and avoid raw number usage for prices and payments."
+        },
+        {
+          "criterionId": "encapsulation",
+          "criterionName": "Encapsulation & Responsibilities",
+          "score": 8,
+          "evidence": "Fields such as quantity, slots and state are private; public behavior (dispense, addItem, makePayment) manipulates them. SelectedItem is public but only mutated through VendingMachine methods.",
+          "feedback": "Encapsulation is generally good, but exposing selectedItem as a public field and providing getQuantity may leak internal state.",
+          "suggestion": "Make selectedItem private and expose read‑only accessors; consider removing getQuantity or returning a read‑only view."
+        },
+        {
+          "criterionId": "extensibility",
+          "criterionName": "Extensibility",
+          "score": 8,
+          "evidence": "The comment \"Easy to add later without modifying VendingMachine\" and the Strategy pattern for PaymentMethod illustrate extension points; new states can be added via the State pattern.",
+          "feedback": "Adding new payment methods or states is straightforward, but some coupling remains (VendingMachine directly calls inventory.dispense and processes payment).",
+          "suggestion": "Introduce interfaces for dispensing and transaction handling so VendingMachine depends on abstractions, reducing the need to modify it for future changes."
+        },
+        {
+          "criterionId": "solid",
+          "criterionName": "SOLID / Design Quality",
+          "score": 7,
+          "evidence": "Single Responsibility is claimed: Inventory manages stock, PaymentMethod manages payment, VendingMachine coordinates, States control valid operations. Open/Closed is used for payments.",
+          "feedback": "VendingMachine.processPayment mixes payment validation and dispensing, violating SRP. Also, state methods signatures are inconsistent (makePayment missing parameters in IdleState).",
+          "suggestion": "Extract dispensing logic into a separate service and ensure all state classes strictly follow the VendingMachineState interface signature."
+        },
+        {
+          "criterionId": "tradeoffs",
+          "criterionName": "Trade-offs & Explanation",
+          "score": 9,
+          "evidence": "The \"DESIGN TRADE-OFFS\" section explains why State and Strategy patterns were chosen, their benefits and limitations, and mentions failure handling and extensibility considerations.",
+          "feedback": "The trade‑off discussion is clear and ties decisions to concrete benefits and potential drawbacks.",
+          "suggestion": "Include a brief note on the runtime overhead of the State pattern and how it was deemed acceptable for this domain."
+        }
+      ],
+      "strengths": [
+        "Domain Modeling: The model captures the main concepts without unnecessary complexity. A dedicated Money/value‑object could improve type safety for prices and amounts.",
+        "Encapsulation & Responsibilities: Encapsulation is generally good, but exposing selectedItem as a public field and providing getQuantity may leak internal state.",
+        "Extensibility: Adding new payment methods or states is straightforward, but some coupling remains (VendingMachine directly calls inventory.dispense and processes payment).",
+        "Trade-offs & Explanation: The trade‑off discussion is clear and ties decisions to concrete benefits and potential drawbacks."
+      ],
+      "weaknesses": [],
+      "suggestions": [],
+      "createdAt": "2026-09-10T07:45:37.713Z",
+      "updatedAt": "2026-09-10T07:53:30.468Z",
+      "failureReason": null
+    },
+    {
+      "id": "debc32f4-5363-430e-9eed-7c36fecfbcd2",
+      "submissionId": "d5609ae6-f15e-47cf-865f-4f6e3a02842e",
+      "rubricId": "rubric-v1",
+      "attempts": 0,
+      "status": "failed",
+      "overallScore": null,
+      "criteria": [],
+      "strengths": [],
+      "weaknesses": [],
+      "suggestions": [],
+      "createdAt": "2026-09-10T07:49:08.605Z",
+      "updatedAt": "2026-09-10T07:49:12.113Z",
+      "failureReason": "LLM call failed or returned unparseable JSON"
+    },
+    {
+      "id": "afadd7db-2a8e-46ab-9f6a-5263bfc08e3c",
+      "submissionId": "ea64c8f3-dcbd-4497-9cbc-3e703b2e50ab",
+      "rubricId": "rubric-v1",
+      "attempts": 0,
+      "status": "failed",
+      "overallScore": null,
+      "criteria": [],
+      "strengths": [],
+      "weaknesses": [],
+      "suggestions": [],
+      "createdAt": "2026-09-10T07:50:52.750Z",
+      "updatedAt": "2026-09-10T07:50:52.878Z",
+      "failureReason": "LLM call failed or returned unparseable JSON"
+    },
+    {
+      "id": "195660ed-2f80-4de8-a666-6cc529815283",
+      "submissionId": "d959ab82-c0c3-4709-b062-3062dcbac37f",
+      "rubricId": "rubric-v1",
+      "attempts": 3,
+      "status": "completed",
+      "overallScore": 7.1,
+      "criteria": [
+        {
+          "criterionId": "requirement-coverage",
+          "criterionName": "Requirement Coverage",
+          "score": 7,
+          "evidence": "findAvailableSpot returns null // lot is full — handled explicitly, and parkVehicle/unparkVehicle implement entry, exit and fee calculation",
+          "feedback": "The design meets core requirements (parking, unparking, fee calculation, full‑lot handling) but does not model multiple vehicle/spot types or address concurrency, which are part of the stated requirements.",
+          "suggestion": "Add Spot types (e.g., compact, large) and a Vehicle type hierarchy, and consider thread‑safe access to shared state."
+        },
+        {
+          "criterionId": "domain-modeling",
+          "criterionName": "Domain Modeling",
+          "score": 6,
+          "evidence": "SpotManager uses a Map<string, boolean> for spots and ParkingLot stores licensePlate strings in a Map; there is no explicit Spot or Vehicle entity.",
+          "feedback": "The model captures the essential behavior but conflates concepts (spot is just an id/boolean, vehicle is just a string), missing natural domain objects and their attributes.",
+          "suggestion": "Introduce Spot and Vehicle/value‑object classes with properties such as spotId, spotType, licensePlate, vehicleType to make the domain clearer."
+        },
+        {
+          "criterionId": "encapsulation",
+          "criterionName": "Encapsulation & Responsibilities",
+          "score": 9,
+          "evidence": "private spots = new Map<string, boolean>(); with occupy/release methods, and private occupiedBy map inside ParkingLot; state is never exposed publicly.",
+          "feedback": "State is well‑encapsulated and mutated only through dedicated methods, preserving invariants.",
+          "suggestion": "Consider adding validation inside SpotManager methods (e.g., prevent occupying an already occupied spot) to tighten invariants."
+        },
+        {
+          "criterionId": "extensibility",
+          "criterionName": "Extensibility",
+          "score": 6,
+          "evidence": "PricingStrategy interface allows new pricing rules, but vehicle/spot types are hard‑coded and ParkingLot depends on concrete SpotManager, PaymentProcessor, ReceiptService.",
+          "feedback": "Pricing is extensible, yet adding new vehicle or spot types would require changes in multiple classes, limiting overall extensibility.",
+          "suggestion": "Introduce abstractions for SpotManager (e.g., ISpotRepository) and for vehicle handling, and make spot selection strategy pluggable."
+        },
+        {
+          "criterionId": "solid",
+          "criterionName": "SOLID / Design Quality",
+          "score": 8,
+          "evidence": "Separate classes for pricing, payment, receipt, spot management; each has a single responsibility. PricingStrategy follows OCP. ParkingLot directly uses concrete collaborators.",
+          "feedback": "Good adherence to SRP and OCP for pricing; however, Dependency Inversion is only partially applied because ParkingLot depends on concrete implementations rather than interfaces.",
+          "suggestion": "Define interfaces for payment processing and receipt issuance and have ParkingLot depend on those abstractions."
+        },
+        {
+          "criterionId": "tradeoffs",
+          "criterionName": "Trade-offs & Explanation",
+          "score": 7,
+          "evidence": "Comment: \"PricingStrategy was introduced specifically so a new pricing rule ... is a new class, not an edit to ParkingLot. Multi-currency support was deliberately left out of scope.\"",
+          "feedback": "The submission explains the main trade‑off (pricing extensibility vs. scope) but provides limited discussion of other decisions such as spot modeling or concurrency.",
+          "suggestion": "Expand the trade‑off section to cover why spot types were omitted, why concurrency was not addressed, and what would change if those concerns were added."
+        }
+      ],
+      "strengths": [
+        "Encapsulation & Responsibilities: State is well‑encapsulated and mutated only through dedicated methods, preserving invariants.",
+        "SOLID / Design Quality: Good adherence to SRP and OCP for pricing; however, Dependency Inversion is only partially applied because ParkingLot depends on concrete implementations rather than interfaces."
+      ],
+      "weaknesses": [],
+      "suggestions": [],
+      "createdAt": "2026-09-10T07:50:58.522Z",
+      "updatedAt": "2026-09-10T07:53:05.918Z",
+      "failureReason": null
+    }
+  ]
+}
